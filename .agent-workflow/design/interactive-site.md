@@ -97,3 +97,45 @@ Actions to Pages. `modules/` stays the canonical source.
 - Secrets: PASS — no keys anywhere in the site; both runtimes are served from the site's own origin rather than a third-party CDN, and the vendor-key-prefix grep is in the test plan.
 - AI surfaces: PASS — no model in the product; learner-typed code reaches only the in-tab WASM sandboxes and is stored only in same-origin localStorage.
 - Boundaries: PASS — no endpoints and no authorization; cell output and error text are written as text, never as HTML, so a query result cannot inject markup.
+
+## Deviations
+
+Recorded by builder A while implementing T1-T3. Each one keeps the design's
+intent; only the mechanism changed.
+
+1. **The cells plugin is a Sätteri mdast plugin, not a rehype plugin.**
+   Astro 7.3.2 ships Sätteri as its Markdown pipeline; `markdown.remarkPlugins`
+   and `markdown.rehypePlugins` are deprecated there. The file is still
+   `site/src/plugins/cells.mjs` with the same rules and outputs. It is
+   registered through `markdown.processor: satteri({ mdastPlugins: [...] })`,
+   which adds `@astrojs/markdown-satteri` and `satteri` as explicit
+   dependencies (both are already Astro's own, pinned to the versions Astro
+   installed). Working on mdast also makes the HTML-comment markers plain
+   sibling nodes rather than raw nodes to re-parse.
+2. **`scripts/copy-datasets.mjs` also copies the two runtimes.** The Approach
+   requires DuckDB-WASM and Pyodide to be self-hosted; no other file in the
+   table owns that copy, so the one `prebuild` script does all three and fails
+   loudly if any asset is missing. `.gitignore` therefore also covers
+   `site/public/duckdb/` and `site/public/pyodide/`.
+3. **`verify-sql.mjs` runs every `sql` fence in document order, not only the
+   ones with a `text` block.** Module 05's walkthrough creates `tags` and
+   `ticket_tags` in one fence and queries them in the next, exactly as a
+   browser tab does over one shared connection. Setup fences (no adjacent
+   `text` block) run best effort and their failures are ignored; a fence whose
+   `text` block claims a DuckDB error passes when the engine raises that same
+   error. All 74 claimed outputs are checked, none skipped.
+4. **Exercise cells are grouped in one block below the numbered list**, not
+   inline inside each list item. Injected HTML is re-parsed as Markdown, and a
+   block inside a list item is fragile about indentation; the design does not
+   specify placement.
+5. **`tsconfig.json` added** as part of the "Astro project at repo root" row,
+   so `site/**` type-checks in an editor. No `astro check` step: it needs
+   `@astrojs/check`, a dependency the design does not name.
+6. **Cell output values are formatted from the Arrow schema.** Arrow returns
+   DATE and TIMESTAMP columns as epoch milliseconds; `formatterFor()` renders
+   them the way the DuckDB CLI does, which is how every `solutions.md` output
+   block shows them. Without it a cell would print `1706832000000`.
+7. **A cell runs every statement it contains.** DuckDB-WASM executes one
+   statement per call, and walkthrough cells hold several; `splitStatements()`
+   splits on semicolons outside strings and comments and shows the last
+   result.

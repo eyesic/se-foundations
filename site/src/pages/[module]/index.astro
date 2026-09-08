@@ -1,0 +1,36 @@
+---
+import { getCollection, render } from 'astro:content';
+import Page from '../../layouts/Page.astro';
+import CodeCells from '../../components/CodeCell';
+import Mermaid from '../../components/Mermaid';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('modules');
+  return entries.map((entry) => ({
+    params: { module: entry.id.replace(/\/readme$/i, '') },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const slug = entry.id.replace(/\/readme$/i, '');
+const heading = /^#\s+(.+)$/m.exec(entry.body ?? '');
+const title = heading ? heading[1].trim() : slug;
+
+const base = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : import.meta.env.BASE_URL + '/';
+---
+
+<Page title={`${title} — se-foundations`} current={slug}>
+  <p class="pagelinks">
+    <a href={`${base}${slug}/solutions/`}>Solutions for this module</a>
+  </p>
+  <article class="prose">
+    <Content />
+  </article>
+  <CodeCells client:load moduleSlug={slug} />
+  <Mermaid client:idle />
+</Page>

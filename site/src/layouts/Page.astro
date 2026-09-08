@@ -1,0 +1,50 @@
+---
+import Nav from '../components/Nav.astro';
+import '../styles/site.css';
+
+interface Props {
+  title: string;
+  current?: string;
+}
+
+const { title, current } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta
+      name="description"
+      content="Solutions engineering foundations: 12 modules of Markdown you can also run in the browser."
+    />
+  </head>
+  <body>
+    <a class="skip" href="#content">Skip to content</a>
+    <div class="shell">
+      <Nav current={current} />
+      <main id="content" class="content">
+        <slot />
+      </main>
+    </div>
+    <footer class="footer">
+      <p>
+        Anything you type here, and any solution you reveal, is kept in this
+        browser only. There is no account and no server. Clear your browser
+        storage, or open the site in another browser or on another device, and
+        it is gone.
+      </p>
+      <p>
+        It is not your progress tracker. Ticking the boxes in
+        <code>progress.md</code> and committing that file is still the record of
+        what you have finished.
+      </p>
+      <p>
+        The Markdown in <code>modules/</code> is the canonical source. This site
+        is an extra surface on top of it.
+      </p>
+    </footer>
+  </body>
+</html>
