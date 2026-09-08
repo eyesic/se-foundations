@@ -53,8 +53,10 @@ function slugify(text) {
 }
 
 // Reads every numbered section of a module's solutions.md once. Section N is
-// the first heading at any level whose text matches `^(Exercise )?N[.:]`,
+// the first heading below the title whose text matches `^(Exercise )?N[.:]`,
 // searched from `## Exercises` when the file has one, otherwise from the top.
+// The `#` title is skipped: every solutions.md is titled `# NN. Solutions`,
+// which would otherwise claim exercise NN and reveal the whole file.
 function readSolutions(moduleDir) {
   if (solutionCache.has(moduleDir)) return solutionCache.get(moduleDir);
 
@@ -82,6 +84,7 @@ function readSolutions(moduleDir) {
   for (let h = 0; h < headings.length; h += 1) {
     const heading = headings[h];
     if (heading.line < searchFrom) continue;
+    if (heading.depth === 1) continue;
     const number = /^(?:Exercise\s+)?(\d+)[.:]/.exec(heading.text);
     if (!number) continue;
     const key = Number(number[1]);
