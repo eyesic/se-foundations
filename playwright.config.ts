@@ -14,10 +14,9 @@ export default defineConfig({
     trace: 'off',
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
-  webServer: {
-    command: 'npm run preview',
-    url: 'http://localhost:4321/se-foundations/',
-    reuseExistingServer: !process.env.CI,
-    timeout: 120_000,
-  },
+  // Not `webServer`: `astro preview` returns as soon as its background server
+  // is up, which Playwright reads as a server that died. tests/preview-server.ts
+  // starts one over the current dist/ and stops it again afterwards.
+  globalSetup: './tests/global-setup.ts',
+  globalTeardown: './tests/global-teardown.ts',
 });

@@ -11,6 +11,34 @@ const PYTHON_MODULE = '07-python-for-ses';
 /** Fence languages that must never become a runnable cell (AC2.5). */
 const STATIC_LANGS = ['bash', 'powershell', 'json', 'text', 'mermaid', 'markdown'];
 
+/**
+ * What each module's markers must produce. Counted from the built pages; the
+ * point of writing them down is that a marker-parsing regression, which would
+ * turn static fences into cells or drop the local badges, fails here instead
+ * of shipping.
+ */
+const EXPECTED_CELLS: Record<string, { cells: number; badges: number }> = {
+  '00-start-here': { cells: 0, badges: 0 },
+  '01-how-software-works': { cells: 0, badges: 0 },
+  '02-terminal-and-git': { cells: 0, badges: 0 },
+  '03-sql-foundations': { cells: 34, badges: 2 },
+  '04-sql-intermediate': { cells: 33, badges: 0 },
+  '05-data-modeling': { cells: 7, badges: 0 },
+  '06-apis-and-http': { cells: 0, badges: 0 },
+  '07-python-for-ses': { cells: 11, badges: 8 },
+  '08-integrations-and-architecture': { cells: 0, badges: 0 },
+  '09-capstone-pipeline': { cells: 0, badges: 6 },
+  '10-the-se-craft': { cells: 0, badges: 0 },
+  '11-job-search-kit': { cells: 0, badges: 0 },
+};
+
+/** The output module 07's solutions.md states for the exercises that run here. */
+const SOLUTION_OUTPUT: Array<{ exercise: number; output: RegExp }> = [
+  { exercise: 4, output: /medium\s+641/ },
+  { exercise: 5, output: /open: 229 of 1615 = 14\.2%/ },
+  { exercise: 7, output: /avg 3\.84 over 988 scored, 627 excluded/ },
+];
+
 async function firstCellByLang(page: Page, lang: 'sql' | 'python') {
   const cell = page.locator(`[data-cell][data-lang="${lang}"]`).first();
   await expect(cell.locator('textarea[data-cell-editor]')).toBeVisible();
@@ -178,4 +206,121 @@ test('AC3.4 and AC3.5 the page says browser state is not the tracker', async ({ 
   const footer = page.locator('.footer');
   await expect(footer).toContainText('this browser only');
   await expect(footer).toContainText('progress.md');
+});
+
+test('AC2.1 and AC2.5 every module renders exactly the cells and badges its markers ask for', async ({
+  page,
+}) => {
+  expect(moduleSlugs).toEqual(Object.keys(EXPECTED_CELLS));
+
+  for (const slug of moduleSlugs) {
+    const expected = EXPECTED_CELLS[slug];
+    await page.goto(`${slug}/`);
+    await expect(page.locator('[data-cell]'), `${slug}: runnable cells`).toHaveCount(expected.cells);
+    await expect(page.locator('[data-local-badge]'), `${slug}: run-locally badges`).toHaveCount(
+      expected.badges,
+    );
+    // A revealed solution is one numbered section of solutions.md. Its own `##`
+    // headings would mean the whole file was pulled in.
+    await expect(page.locator('[data-solution] h2'), `${slug}: solution panels`).toHaveCount(0);
+  }
+});
+
+test('AC2.3 the concepts fence that opens customers.csv runs as the module says', async ({
+  page,
+}) => {
+  await page.goto(`${PYTHON_MODULE}/`);
+  const cells = page.locator('[data-cell][data-lang="python"]');
+  const codes = await cells.evaluateAll((nodes) =>
+    nodes.map((node) => node.getAttribute('data-code') ?? ''),
+  );
+  const index = codes.findIndex((code) => code.includes('open("customers.csv"'));
+  expect(index, 'module 07 promises this fence runs in the browser').toBeGreaterThanOrEqual(0);
+
+  const cell = cells.nth(index);
+  await cell.locator('button.cell__run').click();
+  const output = cell.locator('[data-cell-output]');
+  await expect(output).toContainText('Redwood Analytics', { timeout: 120_000 });
+  await expect(cell.locator('[data-cell-error]')).toHaveCount(0);
+});
+
+test('AC2.3 a python cell reads the CSVs by both of the paths the curriculum uses', async ({
+  page,
+}) => {
+  await page.goto(`${PYTHON_MODULE}/`);
+  const cell = await firstCellByLang(page, 'python');
+  await cell.locator('textarea[data-cell-editor]').fill(
+    [
+      'import csv',
+      'with open("customers.csv", newline="", encoding="utf-8") as handle:',
+      '    customers = list(csv.DictReader(handle))',
+      'with open("datasets/support_tickets.csv", newline="", encoding="utf-8") as handle:',
+      '    tickets = list(csv.DictReader(handle))',
+      'print(len(customers), len(tickets))',
+    ].join('\n'),
+  );
+  await cell.locator('button.cell__run').click();
+
+  // datasets/README.md: 200 customers, 1615 support tickets.
+  await expect(cell.locator('[data-cell-output]')).toContainText('200 1615', { timeout: 120_000 });
+  await expect(cell.locator('[data-cell-error]')).toHaveCount(0);
+});
+
+test('AC2.4 stderr lands in the error region and never in the next run', async ({ page }) => {
+  await page.goto(`${PYTHON_MODULE}/`);
+  const cell = await firstCellByLang(page, 'python');
+  const editor = cell.locator('textarea[data-cell-editor]');
+  const output = cell.locator('[data-cell-output]');
+  const error = cell.locator('[data-cell-error]');
+
+  // The marker has no trailing newline, and nothing else in this run writes to
+  // stderr: this is exactly the write that used to stay in Pyodide's buffer and
+  // surface under the following cell.
+  await editor.fill(
+    [
+      'import sys',
+      'sys.stderr.write("STDERR_MARKER_NO_NEWLINE")',
+      'print("stdout stays here")',
+    ].join('\n'),
+  );
+  await cell.locator('button.cell__run').click();
+  await expect(error).toContainText('STDERR_MARKER_NO_NEWLINE', { timeout: 120_000 });
+  await expect(output).toContainText('stdout stays here');
+  await expect(output).not.toContainText('STDERR_MARKER_NO_NEWLINE');
+
+  await editor.fill('print("the run after that")');
+  await cell.locator('button.cell__run').click();
+  await expect(output).toContainText('the run after that');
+  await expect(output).not.toContainText('STDERR_MARKER_NO_NEWLINE');
+  await expect(error).toHaveCount(0);
+
+  // A warning is not stdout either.
+  await editor.fill(['import warnings', 'warnings.warn("careful")', 'print("done")'].join('\n'));
+  await cell.locator('button.cell__run').click();
+  await expect(error).toContainText('UserWarning');
+  await expect(output).toContainText('done');
+  await expect(output).not.toContainText('UserWarning');
+});
+
+test('AC3.2 module 07 exercises 4, 5 and 7 run the solution they reveal', async ({ page }) => {
+  await page.goto(`${PYTHON_MODULE}/`);
+  const solutionsMd = readFileSync(path.join(root, 'modules', PYTHON_MODULE, 'solutions.md'), 'utf8');
+
+  // In order: 5 and 7 reuse the `tickets` list 4 defines, the way one tab's
+  // interpreter carries state from one cell to the next.
+  for (const { exercise, output } of SOLUTION_OUTPUT) {
+    const cell = page.locator(`[data-cell][data-cell-id="exercise-${exercise}"]`);
+    await cell.locator('button[data-reveal]').click();
+    const solution = cell.locator('[data-solution]');
+    await expect(solution).toBeVisible();
+
+    const revealed = (await solution.locator('pre').first().innerText()).trim();
+    expect(revealed.length, `exercise ${exercise}: revealed code`).toBeGreaterThan(0);
+    expect(solutionsMd).toContain(revealed);
+
+    await cell.locator('textarea[data-cell-editor]').fill(revealed);
+    await cell.locator('button.cell__run').click();
+    await expect(cell.locator('[data-cell-output]')).toContainText(output, { timeout: 120_000 });
+    await expect(cell.locator('[data-cell-error]')).toHaveCount(0);
+  }
 });
