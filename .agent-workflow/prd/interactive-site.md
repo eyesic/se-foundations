@@ -35,8 +35,16 @@ turns `'` into `’` and `"` into `“ ”`, so page text is not byte-identical 
 the file; `scripts/verify-content.mjs` compares headings, table rows and fences
 with that substitution undone, and fences byte for byte, since the renderer
 leaves code alone. And "prose" is dropped from the criterion: paragraph text is
-not diffed, because rewrapping a paragraph is not a defect and the check would
-have to reimplement the renderer to tell the two apart.
+not diffed, because rewrapping a paragraph is not a defect and a byte diff
+cannot tell a rewrap from a rewrite.
+
+Corrected by the reviewer, round two: the stated reason went one step too far.
+A sentence-level containment check (normalise the page text, then assert every
+source sentence appears in it) tells a rewrap from a rewrite without
+reimplementing the renderer; the reviewer ran one over all 24 pages, 1554
+sentences, 0 missing. So prose is intact as shipped, and the gap AC1.2 now
+leaves is regression cover, not an impossibility. Adding that check is a
+follow-up, not a defect in this build.
 
 ### T2: Runnable SQL and Python cells
 `sql` and `python` fences in Concepts/Walkthrough sections become runnable
@@ -72,8 +80,14 @@ exercises are correctly scoped to local-only.
 |---|---|---|
 | AC4.1 | Given module 00's tool-setup walkthrough, when rewritten, then it states the browser-run path for SQL/Python modules and that module 02 (terminal/Git) and module 07's file-writing exercises still require local install. | no |
 | AC4.2 | Given modules 03-09's SQL instructions, when rewritten, then phrasing assuming a terminal ("open DuckDB in your terminal and run") is replaced with wording covering both the in-browser cell and the local CLI/Python path. | no |
-| AC4.3 | Given module 07's `weather_to_csv.py` walkthrough, when rewritten, then it states that exercise runs locally only, because browser Python cells cannot call external APIs or write local files, and scopes module 07's runnable browser cells to the file-free exercises. | no |
+| AC4.3 | Given module 07's `weather_to_csv.py` walkthrough, when rewritten, then it states that exercise runs locally only, because browser Python cells cannot call external APIs or write local files, and scopes module 07's runnable browser cells to the exercises that need neither network access nor a local file write. | no |
 | AC4.4 | Given the root README and module 00, when rewritten, then both state the site is an additional surface and `modules/` Markdown remains the canonical source read on GitHub. | no |
+
+Corrected by the reviewer, round two: "file-free" was wrong. Design decision 5
+preloads the seven `datasets/` CSVs into the browser runtime, so exercises that
+only *read* them (4, 5, 7) do run in the browser and are verified doing so by
+`tests/site.spec.ts:247` and `:305`. The exercises held back are the ones that
+call a network API or write a file: 2, 3, 6, 8, 9, 10.
 
 ## Prior knowledge
 - Knowledge store search for interactive-code-site precedent returned no

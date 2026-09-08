@@ -47,7 +47,7 @@ Actions to Pages. `modules/` stays the canonical source.
 - `<!-- local-exercises: 2,3,8 -->` in the same section: those numbers get the local badge and no cell.
 
 ### Cell derivation
-- Exercise N's language is the language of the first fence in the matching `solutions.md` section, where matching means the first heading at any level whose text matches `^(Exercise\s+)?N[.:]`, searched from an `## Exercises` heading if the file has one, otherwise from the top. Anything other than `sql` or `python` gives no cell.
+- Exercise N's language is the language of the first fence in the matching `solutions.md` section, where matching means the first heading below the file title whose text matches `^(Exercise\s+)?N[.:]` (depth-1 headings are skipped: every `solutions.md` is titled `# NN. Solutions`, which otherwise claims exercise NN and reveals the whole file), searched from an `## Exercises` heading if the file has one, otherwise from the top. Anything other than `sql` or `python` gives no cell.
 - Reveal-solution content is that section's body, rendered into the page at build time.
 - Cell id is `<sectionSlug>-<ordinal within section>`; exercise cells are `exercise-<N>`.
 
@@ -66,7 +66,7 @@ Actions to Pages. `modules/` stays the canonical source.
 - Every module page footer states that this is browser-only convenience, is lost when storage is cleared or the browser changes, and does not replace ticking and committing `progress.md` (AC3.4, AC3.5).
 
 ### Deploy
-- `pages.yml`: `on: push: branches: [main]` plus `workflow_dispatch`; `permissions: contents: read, pages: write, id-token: write`; `concurrency: group: pages`; steps checkout, setup-node 20 with npm cache, `npm ci`, `npm run build`, `upload-pages-artifact` with `dist`, `deploy-pages`. The maintainer sets the Pages source to "GitHub Actions" once, by hand.
+- `pages.yml`: `on: push: branches: [main]` plus `workflow_dispatch`; `permissions: contents: read` at workflow level, with `pages: write` and `id-token: write` on the `deploy` job alone (narrowed in review round one, so the job that runs `npm ci` holds no deploy token); `concurrency: group: pages`; steps checkout, setup-node 20 with npm cache, `npm ci`, `npm run build`, `upload-pages-artifact` with `dist`, `deploy-pages`. The maintainer sets the Pages source to "GitHub Actions" once, by hand.
 
 ## Reuse
 - `datasets/README.md:223-229` — the seven load statements the browser loader copies verbatim.
