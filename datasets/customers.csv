@@ -1,0 +1,201 @@
+customer_id,company_name,industry,country,region,signup_date,csm_owner
+1,Redwood Analytics,Healthcare,United States,NA,2025-12-05,Marcus Bell
+2,Vantage Media Inc,Software,United States,NA,2025-12-25,Jordan Reyes
+3,Meridian Financial,Software,Australia,APAC,2024-12-08,Jordan Reyes
+4,Nimbus Industries Pty,Financial Services,United States,NA,2025-05-28,Ella Nguyen
+5,Westgate Industries,Financial Services,Netherlands,EMEA,2025-06-11,Sofia Marchetti
+6,Yardley Networks,Software,Netherlands,EMEA,2026-01-23,Marcus Bell
+7,Meridian Retail,Education,United Kingdom,EMEA,2024-12-29,Tom Okafor
+8,Sable Health,Retail,United States,NA,2025-01-23,Sofia Marchetti
+9,Tidewater Group,Software,Japan,APAC,2024-02-02,Ella Nguyen
+10,Halcyon Industries GmbH,Education,India,APAC,2025-05-26,Jordan Reyes
+11,Marlow Systems LLC,Manufacturing,Australia,APAC,2025-07-14,Jordan Reyes
+12,Beacon Group,Media,United States,NA,2024-02-18,Marcus Bell
+13,Ironclad Labs,Financial Services,United Kingdom,EMEA,2025-10-23,Chris Lindqvist
+14,Ridgeline Industries,Software,Japan,APAC,2024-10-16,Sofia Marchetti
+15,Nimbus Retail LLC,Manufacturing,United Kingdom,EMEA,2026-01-17,Marcus Bell
+16,Anchor Learning,Healthcare,United States,NA,2026-01-26,Dana Whitfield
+17,Westgate Works,Education,United States,NA,2026-02-20,Sofia Marchetti
+18,Copper Logistics GmbH,Financial Services,Brazil,LATAM,2026-02-12,Priya Raman
+19,Vertex Robotics,Logistics,United States,NA,2026-04-17,
+20,Anchor Foods,Media,France,EMEA,2025-07-29,Tom Okafor
+21,Meridian Health GmbH,Retail,Germany,EMEA,2025-12-25,Dana Whitfield
+22,Meridian Health,Financial Services,Japan,APAC,2025-03-28,Chris Lindqvist
+23,Aurora Freight GmbH,Retail,Germany,EMEA,2026-02-08,Tom Okafor
+24,Lakeside Retail,Logistics,Canada,NA,2026-01-01,Marcus Bell
+25,Harbor Foods,Financial Services,Australia,APAC,2024-07-13,Chris Lindqvist
+26,Vertex Media Co,Financial Services,United States,NA,2026-03-07,Marcus Bell
+27,Harbor Freight,Retail,Brazil,LATAM,2025-05-12,Chris Lindqvist
+28,Aurora Foods,Software,United States,NA,2025-03-17,Chris Lindqvist
+29,Willow Media,Media,Netherlands,EMEA,2024-10-30,Tom Okafor
+30,Harbor Interactive,Education,United States,NA,2025-08-21,Chris Lindqvist
+31,Quarry Learning GmbH,Healthcare,United States,NA,2024-03-10,Tom Okafor
+32,Halcyon Retail,Software,Germany,EMEA,2025-07-08,Ella Nguyen
+33,Falcon Partners,Manufacturing,United States,NA,2025-12-03,
+34,Marlow Works,Software,India,APAC,2026-07-16,Marcus Bell
+35,Cobalt Freight Ltd,Education,United States,NA,2026-03-17,Ella Nguyen
+36,Willow Labs,Manufacturing,Germany,EMEA,2026-06-17,Dana Whitfield
+37,Vertex Robotics,Healthcare,United States,NA,2026-03-23,Priya Raman
+38,Sable Digital,Retail,Netherlands,EMEA,2026-03-02,Chris Lindqvist
+39,Falcon Logistics Co,Software,Japan,APAC,2026-02-28,Priya Raman
+40,Falcon Labs,Logistics,Germany,EMEA,2024-10-13,Priya Raman
+41,Solstice Logistics,Healthcare,Germany,EMEA,2024-06-24,Ella Nguyen
+42,Blue Ridge Networks LLC,Education,France,EMEA,2026-03-19,Jordan Reyes
+43,Ridgeline Industries,Healthcare,United States,NA,2026-02-10,Jordan Reyes
+44,Northwind Labs,Logistics,United States,NA,2026-03-08,Tom Okafor
+45,Sable Labs,Software,United States,NA,2025-02-08,Chris Lindqvist
+46,Orchard Digital,Retail,India,APAC,2024-07-16,Jordan Reyes
+47,Nimbus Industries,Manufacturing,Brazil,LATAM,2025-09-03,Ella Nguyen
+48,Northwind Retail,Manufacturing,United States,NA,2025-09-02,Jordan Reyes
+49,Orchard Works,Financial Services,Brazil,LATAM,2025-10-12,Sofia Marchetti
+50,Blue Ridge Media Pty,Retail,United Kingdom,EMEA,2024-08-14,Ella Nguyen
+51,Yardley Works,Manufacturing,United States,NA,2025-11-30,Ella Nguyen
+52,Halcyon Digital,Logistics,United States,NA,2026-03-31,Sofia Marchetti
+53,Halcyon Freight,Retail,United States,NA,2025-10-14,Ella Nguyen
+54,Anchor Learning,Media,United States,NA,2026-05-14,Priya Raman
+55,Summit Digital,Education,France,EMEA,2026-02-08,Tom Okafor
+56,Anchor Group,Software,United States,NA,2025-05-01,Marcus Bell
+57,Marlow Media,Logistics,Germany,EMEA,2025-02-27,Dana Whitfield
+58,Lakeside Media Pty,Media,Brazil,LATAM,2024-09-12,Marcus Bell
+59,Marlow Systems,Education,France,EMEA,2026-03-24,Jordan Reyes
+60,Tidewater Financial,Media,Australia,APAC,2026-01-12,Sofia Marchetti
+61,Ridgeline Robotics,Financial Services,United States,NA,2025-02-18,Ella Nguyen
+62,Quill Freight LLC,Healthcare,United States,NA,2024-08-05,Jordan Reyes
+63,Nimbus Freight,Logistics,United States,NA,2026-01-21,Dana Whitfield
+64,Umber Foods,Manufacturing,Brazil,LATAM,2026-03-03,Jordan Reyes
+65,Solstice Freight,Media,India,APAC,2025-03-22,Chris Lindqvist
+66,Northwind Foods SA,Healthcare,Australia,APAC,2026-04-11,Dana Whitfield
+67,Halcyon Interactive,Logistics,United States,NA,2025-04-17,Priya Raman
+68,Harbor Industries,Education,United States,NA,2026-03-17,Sofia Marchetti
+69,Juniper Industries,Software,United Kingdom,EMEA,2025-05-21,Marcus Bell
+70,Blue Ridge Analytics,Software,United States,NA,2025-02-22,Chris Lindqvist
+71,Redwood Interactive,Manufacturing,United Kingdom,EMEA,2024-12-16,Marcus Bell
+72,Bright Digital Inc,Logistics,India,APAC,2025-12-25,Marcus Bell
+73,Vantage Group Pty,Financial Services,United States,NA,2025-10-06,Dana Whitfield
+74,Orchard Freight,Education,Canada,NA,2025-03-06,Chris Lindqvist
+75,Lakeside Media,Media,France,EMEA,2025-07-19,Sofia Marchetti
+76,Yardley Freight,Manufacturing,United Kingdom,EMEA,2025-02-28,Marcus Bell
+77,Sable Financial Co,Logistics,Germany,EMEA,2025-08-25,Ella Nguyen
+78,Pine Robotics Pty,Manufacturing,United States,NA,2025-12-18,Sofia Marchetti
+79,Tidewater Analytics,Retail,United States,NA,2025-08-21,Tom Okafor
+80,Onyx Robotics,Manufacturing,United States,NA,2025-12-09,Tom Okafor
+81,Anchor Interactive,Education,Germany,EMEA,2026-01-09,Ella Nguyen
+82,Orchard Financial Ltd,Retail,United States,NA,2026-01-08,
+83,Granite Partners,Manufacturing,United States,NA,2026-02-20,Sofia Marchetti
+84,Meridian Networks Inc,Healthcare,Netherlands,EMEA,2026-05-29,Sofia Marchetti
+85,Vertex Robotics Inc,Media,Germany,EMEA,2025-05-15,Dana Whitfield
+86,Falcon Robotics Inc,Financial Services,Canada,NA,2025-12-10,Priya Raman
+87,Ironclad Interactive,Retail,United States,NA,2026-02-21,Jordan Reyes
+88,Westgate Supply,Logistics,United States,NA,2025-07-24,Jordan Reyes
+89,Yardley Retail,Retail,United States,NA,2024-09-01,
+90,Pine Freight Inc,Media,Canada,NA,2025-02-16,Sofia Marchetti
+91,Marlow Health,Retail,India,APAC,2025-09-24,Priya Raman
+92,Sable Systems LLC,Manufacturing,Australia,APAC,2025-08-09,Sofia Marchetti
+93,Halcyon Industries,Financial Services,United Kingdom,EMEA,2026-03-22,Ella Nguyen
+94,Westgate Industries LLC,Software,Brazil,LATAM,2025-12-03,Sofia Marchetti
+95,Umber Logistics,Media,United States,NA,2024-12-30,Jordan Reyes
+96,Pivot Health,Education,Canada,NA,2026-03-05,Ella Nguyen
+97,Juniper Robotics Co,Software,Japan,APAC,2025-04-25,Ella Nguyen
+98,Redwood Foods,Software,Japan,APAC,2025-09-23,Jordan Reyes
+99,Harbor Partners,Media,Germany,EMEA,2026-01-16,Tom Okafor
+100,Sable Freight Ltd,Media,United Kingdom,EMEA,2025-10-07,Tom Okafor
+101,Bright Digital,Financial Services,Germany,EMEA,2026-05-11,Marcus Bell
+102,Marlow Retail,Manufacturing,United States,NA,2025-03-23,Chris Lindqvist
+103,Onyx Group,Retail,United States,NA,2025-09-02,Priya Raman
+104,Cobalt Industries,Education,Japan,APAC,2025-09-02,Dana Whitfield
+105,Willow Digital,Media,Germany,EMEA,2025-07-26,
+106,Solstice Foods,Retail,United States,NA,2025-02-22,Jordan Reyes
+107,Meridian Media SA,Logistics,United Kingdom,EMEA,2025-11-28,Priya Raman
+108,Pivot Logistics GmbH,Financial Services,United States,NA,2025-07-22,Chris Lindqvist
+109,Acme Systems,Healthcare,France,EMEA,2026-03-11,Sofia Marchetti
+110,Nimbus Supply,Education,France,EMEA,2026-03-06,Jordan Reyes
+111,Quill Robotics,Financial Services,United States,NA,2025-12-01,Sofia Marchetti
+112,Anchor Analytics Pty,Education,United States,NA,2024-11-22,Jordan Reyes
+113,Umber Labs Inc,Logistics,Germany,EMEA,2025-02-24,Priya Raman
+114,Marlow Industries,Media,India,APAC,2025-12-06,Priya Raman
+115,Cobalt Financial,Manufacturing,Brazil,LATAM,2025-07-12,Sofia Marchetti
+116,Marlow Digital Co,Financial Services,Japan,APAC,2025-08-08,
+117,Umber Digital,Logistics,United States,NA,2025-10-06,Dana Whitfield
+118,Westgate Robotics,Retail,India,APAC,2025-05-23,Tom Okafor
+119,Yardley Industries,Healthcare,Netherlands,EMEA,2026-03-31,Dana Whitfield
+120,Anchor Financial Ltd,Financial Services,Netherlands,EMEA,2025-05-04,
+121,Pine Partners GmbH,Education,India,APAC,2026-04-07,Priya Raman
+122,Falcon Robotics,Education,United States,NA,2025-08-09,Marcus Bell
+123,Ironclad Group,Logistics,Netherlands,EMEA,2026-02-07,Ella Nguyen
+124,Summit Foods GmbH,Education,United States,NA,2025-12-03,Jordan Reyes
+125,Beacon Retail,Education,United Kingdom,EMEA,2025-02-07,Marcus Bell
+126,Marlow Digital,Software,United States,NA,2025-04-17,Chris Lindqvist
+127,Redwood Retail GmbH,Media,United States,NA,2026-05-04,Jordan Reyes
+128,Vantage Systems,Media,France,EMEA,2026-04-25,Sofia Marchetti
+129,Blue Ridge Networks Co,Education,Brazil,LATAM,2025-12-03,Ella Nguyen
+130,Solstice Networks Ltd,Financial Services,United States,NA,2026-02-16,Marcus Bell
+131,Aurora Supply,Education,United States,NA,2024-05-08,Tom Okafor
+132,Cobalt Freight LLC,Retail,Japan,APAC,2024-11-25,Dana Whitfield
+133,Sable Systems,Healthcare,Germany,EMEA,2026-06-06,
+134,Vertex Analytics,Education,Australia,APAC,2024-09-28,Dana Whitfield
+135,Vertex Media,Media,Australia,APAC,2025-05-30,Marcus Bell
+136,Lantern Learning GmbH,Manufacturing,United States,NA,2026-05-18,Dana Whitfield
+137,Onyx Foods,Media,United States,NA,2024-03-23,Ella Nguyen
+138,Westgate Systems Ltd,Education,Germany,EMEA,2025-10-24,Sofia Marchetti
+139,Marlow Learning,Financial Services,United States,NA,2025-11-22,Tom Okafor
+140,Halcyon Industries GmbH,Media,Canada,NA,2026-01-01,Ella Nguyen
+141,Keystone Works,Healthcare,Canada,NA,2025-08-13,Marcus Bell
+142,Summit Health,Education,Australia,APAC,2025-10-01,
+143,Redwood Media,Logistics,France,EMEA,2025-12-28,Sofia Marchetti
+144,Westgate Digital,Retail,Germany,EMEA,2025-05-08,Tom Okafor
+145,Lakeside Networks,Manufacturing,Canada,NA,2026-02-08,Dana Whitfield
+146,Westgate Industries Ltd,Manufacturing,Netherlands,EMEA,2025-05-22,Priya Raman
+147,Cobalt Systems,Financial Services,Brazil,LATAM,2025-02-01,Jordan Reyes
+148,Marlow Works Ltd,Financial Services,Netherlands,EMEA,2024-12-03,
+149,Summit Industries,Media,United Kingdom,EMEA,2025-02-01,Marcus Bell
+150,Orchard Media SA,Media,France,EMEA,2025-04-20,Tom Okafor
+151,Halcyon Supply LLC,Retail,United States,NA,2026-01-18,
+152,Quill Retail SA,Healthcare,United Kingdom,EMEA,2025-12-19,Ella Nguyen
+153,Cobalt Foods,Software,United States,NA,2024-08-27,Ella Nguyen
+154,Umber Media,Logistics,Netherlands,EMEA,2025-06-29,Ella Nguyen
+155,Bright Supply,Education,France,EMEA,2026-05-14,Marcus Bell
+156,Copper Media,Logistics,United Kingdom,EMEA,2026-01-09,Tom Okafor
+157,Nimbus Labs SA,Retail,United States,NA,2025-05-21,Priya Raman
+158,Copper Retail LLC,Healthcare,United States,NA,2025-11-24,Priya Raman
+159,Pivot Financial,Media,Australia,APAC,2026-03-18,Ella Nguyen
+160,Quill Systems,Manufacturing,United Kingdom,EMEA,2025-10-20,Ella Nguyen
+161,Quarry Health Co,Education,United States,NA,2024-08-25,Marcus Bell
+162,Ironclad Labs,Software,United Kingdom,EMEA,2026-02-09,Tom Okafor
+163,Quill Supply,Software,United States,NA,2026-02-10,Ella Nguyen
+164,Summit Learning,Media,United States,NA,2025-09-12,
+165,Beacon Networks,Education,Canada,NA,2024-07-15,
+166,Cobalt Works SA,Manufacturing,Canada,NA,2025-11-25,Priya Raman
+167,Nimbus Health,Education,United States,NA,2025-11-24,Jordan Reyes
+168,Vertex Supply,Logistics,United States,NA,2025-05-06,Priya Raman
+169,Ridgeline Health,Education,United Kingdom,EMEA,2024-11-12,Priya Raman
+170,Aurora Works,Retail,United Kingdom,EMEA,2024-12-03,Sofia Marchetti
+171,Lakeside Learning,Software,Japan,APAC,2026-03-15,Priya Raman
+172,Westgate Foods LLC,Healthcare,Japan,APAC,2024-06-28,Ella Nguyen
+173,Copper Financial,Media,Australia,APAC,2024-09-01,Sofia Marchetti
+174,Onyx Partners,Media,Brazil,LATAM,2025-03-30,Jordan Reyes
+175,Quarry Learning,Retail,United States,NA,2024-11-14,
+176,Harbor Robotics,Financial Services,Germany,EMEA,2025-09-07,Marcus Bell
+177,Westgate Works,Healthcare,United States,NA,2024-09-16,Tom Okafor
+178,Lantern Networks,Logistics,Canada,NA,2025-02-20,Marcus Bell
+179,Beacon Group Inc,Education,Japan,APAC,2024-11-13,Sofia Marchetti
+180,Onyx Systems,Software,United Kingdom,EMEA,2024-04-28,Tom Okafor
+181,Ironclad Freight,Logistics,Germany,EMEA,2024-10-22,Tom Okafor
+182,Anchor Retail Co,Media,France,EMEA,2026-05-06,Chris Lindqvist
+183,Westgate Freight GmbH,Healthcare,Germany,EMEA,2024-02-03,Ella Nguyen
+184,Copper Interactive,Financial Services,France,EMEA,2025-05-29,Dana Whitfield
+185,Cedar Robotics Co,Manufacturing,Brazil,LATAM,2025-05-26,Marcus Bell
+186,Orchard Group,Education,Germany,EMEA,2024-12-26,Ella Nguyen
+187,Pine Financial,Healthcare,United Kingdom,EMEA,2024-08-03,Chris Lindqvist
+188,Blue Ridge Digital Pty,Software,United States,NA,2025-04-22,Jordan Reyes
+189,Solstice Robotics Pty,Manufacturing,France,EMEA,2026-01-27,Ella Nguyen
+190,Sable Retail,Logistics,United Kingdom,EMEA,2026-03-26,Jordan Reyes
+191,Nimbus Labs,Manufacturing,United Kingdom,EMEA,2025-12-31,Marcus Bell
+192,Keystone Supply,Manufacturing,United States,NA,2024-08-30,Sofia Marchetti
+193,Anchor Financial,Media,United Kingdom,EMEA,2024-06-25,Ella Nguyen
+194,Yardley Media Pty,Financial Services,Brazil,LATAM,2025-06-30,Priya Raman
+195,Northwind Systems,Media,France,EMEA,2024-03-09,Tom Okafor
+196,Cobalt Interactive Ltd,Manufacturing,Canada,NA,2024-04-26,Dana Whitfield
+197,Pine Robotics,Financial Services,India,APAC,2025-03-13,Chris Lindqvist
+198,Aurora Supply Co,Healthcare,United States,NA,2025-07-30,Chris Lindqvist
+199,Summit Works,Manufacturing,Netherlands,EMEA,2026-03-02,Priya Raman
+200,Beacon Learning LLC,Retail,Australia,APAC,2024-05-18,

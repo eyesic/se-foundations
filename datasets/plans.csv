@@ -1,0 +1,5 @@
+plan_id,name,monthly_price,seat_limit
+1,Free,0,3
+2,Starter,15,25
+3,Pro,40,100
+4,Enterprise,90,1000

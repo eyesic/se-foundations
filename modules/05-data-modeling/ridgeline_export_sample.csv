@@ -1,0 +1,9 @@
+Account_Name,Acct_Number,HQ_Country,Tier,Seats_Purchased,Monthly_Spend_USD,Owner_Email,Contract_Start,Contract_End,Status,Primary_Contact_Name,Primary_Contact_Email
+Halverson Freight,RGL-00412,US,Gold,240,"21,600",d.whitfield@ridgeline.example,03/14/2025,,Live,Dana Alvarez,dana.alvarez@halverson.example
+Corbin Health Group,RGL-00418,GB,Silver,64,"2,560",m.bell@ridgeline.example,07/01/2025,,Live,Sam Okoye,s.okoye@corbinhealth.example
+Vaughn Retail Ltd,RGL-00420,GB,Silver,18,"720",m.bell@ridgeline.example,09/22/2024,04/30/2026,Cancelled,Riley Novak,riley@vaughnretail.example
+Halverson Freight,RGL-00511,DE,Gold,95,"8,550",p.raman@ridgeline.example,01/08/2026,,Live,Kai Muller,k.muller@halverson.example
+Ortega Manufacturing,RGL-00522,MX,Bronze,9,"135",,02/17/2026,,Pilot,Ines Ortega,ines@ortegamfg.example
+Bell & Hart Partners,RGL-00530,US,Silver,31,"1,240",p.raman@ridgeline.example,11/03/2025,,Live,Morgan Hart,morgan.hart@bellhart.example
+Tanaka Interactive,RGL-00541,JP,Gold,150,"13,500",t.okafor@ridgeline.example,05/19/2025,,Live,Yuki Tanaka,y.tanaka@tanakaint.example
+Prewitt Media Co,RGL-00549,US,Bronze,4,"60",,08/02/2026,,Pilot,Avery Prewitt,avery@prewittmedia.example

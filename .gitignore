@@ -1,0 +1,8 @@
+.agent-workflow/handoffs/
+.agent-workflow/codex/
+*.duckdb
+*.duckdb.wal
+__pycache__/
+.venv/
+.env
+modules/07-python-for-ses/weather.csv
