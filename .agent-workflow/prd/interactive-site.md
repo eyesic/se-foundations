@@ -25,10 +25,18 @@ GitHub rendering is unaffected.
 | AC | Criterion (given/when/then) | Tested |
 |---|---|---|
 | AC1.1 | Given the 12 module READMEs and solutions.md, when the site builds, then every page renders from that Markdown without altering its source content. | yes |
-| AC1.2 | Given a site page, when its prose, headings, tables, and non-runnable code fences are diffed against the raw Markdown, then they are textually identical. | yes |
+| AC1.2 | Given a site page, when its headings, tables, and non-runnable code fences are diffed against the raw Markdown, then they are textually identical apart from the typographic substitution the Markdown renderer applies to quotes and dashes. | yes |
 | AC1.3 | Given any site page, when a learner opens it, then a nav lists all 12 modules in curriculum order with the current module highlighted. | yes |
 | AC1.4 | Given a commit to the site's publishing branch, when the build runs, then it publishes to GitHub Pages with no paid service and no backend server. | no |
 | AC1.5 | Given a viewport under 768px wide, when a learner opens any module page, then code cells and controls remain usable with no horizontal clipping. | no |
+
+AC1.2 was corrected during the build, in two ways. The site's Markdown renderer
+turns `'` into `’` and `"` into `“ ”`, so page text is not byte-identical to
+the file; `scripts/verify-content.mjs` compares headings, table rows and fences
+with that substitution undone, and fences byte for byte, since the renderer
+leaves code alone. And "prose" is dropped from the criterion: paragraph text is
+not diffed, because rewrapping a paragraph is not a defect and the check would
+have to reimplement the renderer to tell the two apart.
 
 ### T2: Runnable SQL and Python cells
 `sql` and `python` fences in Concepts/Walkthrough sections become runnable

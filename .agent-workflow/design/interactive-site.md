@@ -139,3 +139,22 @@ intent; only the mechanism changed.
    statement per call, and walkthrough cells hold several; `splitStatements()`
    splits on semicolons outside strings and comments and shows the last
    result.
+
+Recorded by the builder while fixing the first review round:
+
+8. **Pyodide's cwd is moved to `/`.** Decision 5 says the CSVs are preloaded so
+   the curriculum's own `open("customers.csv")` works. Writing them to `/` is
+   not enough: Pyodide starts in `/home/pyodide`, so `boot()` also calls
+   `FS.chdir('/')`. `runPython` additionally defines `__file__` as
+   `/modules/07-python-for-ses/cell.py`, which is what makes module 07's
+   `Path(__file__).parents[2] / "datasets"` land on the preloaded files.
+9. **`npm run build` is `astro build --force`.** Astro caches rendered Markdown
+   in `node_modules/.astro/data-store.json` keyed on the source file, so a
+   change to `site/src/plugins/cells.mjs` alone rebuilds nothing and every test
+   then passes against the previous HTML. The full rebuild costs under two
+   seconds.
+10. **stderr is part of the error region, not stdout.** AC2.4 asks for separate
+    regions; a warning is not stdout. `runPython` collects the two streams
+    separately and flushes both (`flush()` plus `os.fsync`) before swapping the
+    handlers, because Pyodide holds a line with no newline in its buffer and
+    would otherwise hand it to the next cell.
