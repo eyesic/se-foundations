@@ -41,7 +41,14 @@ re-run it tomorrow.
 **DuckDB** is a database that runs inside a single file with no server to
 install and no admin to ask. You will use it for every SQL module here.
 
-Install the Python package and the command-line tool:
+You can **run this in the browser**. On the site, every SQL block in this
+module has a Run button under it and the seven Northwind tables are already
+loaded, so you can write your first query without installing anything. If that
+is how you are working, skip ahead to `SELECT and FROM` and come back here when
+you want DuckDB on your own machine.
+
+To **run this on your computer** instead, which is how you will work from
+module 07 onward, install the Python package and the command-line tool:
 
 ```bash
 pip install duckdb
@@ -52,9 +59,10 @@ the DuckDB CLI from <https://duckdb.org/docs/installation/> and put it
 somewhere on your PATH. If you would rather not deal with PATH, skip the CLI
 and use the Python one-liner shown below. Both run identical SQL.
 
-From the repo root, create the database and load the CSVs. Type `duckdb
-northwind.duckdb` to start the CLI, then paste:
+On your computer, you create the database and load the CSVs once. From the repo
+root, type `duckdb northwind.duckdb` to start the CLI, then paste:
 
+<!-- local: creates the database file on your machine; the site has already run these seven statements for you -->
 ```sql
 CREATE TABLE plans            AS SELECT * FROM read_csv_auto('datasets/plans.csv');
 CREATE TABLE customers        AS SELECT * FROM read_csv_auto('datasets/customers.csv');
@@ -67,10 +75,14 @@ CREATE TABLE invoices         AS SELECT * FROM read_csv_auto('datasets/invoices.
 
 `read_csv_auto` reads a CSV and guesses each column's type. `CREATE TABLE ... AS
 SELECT` copies the result into a stored table. You do this once. Leave the CLI
-with `.quit` and your data is still there in `northwind.duckdb`.
+with `.quit` and your data is still there in `northwind.duckdb`. The site runs
+these same seven statements when a page loads, which is why the browser boxes
+and your machine return identical rows.
 
-If you skipped the CLI, the Python equivalent of running any query is:
+If you skipped the CLI, the Python equivalent of running any query on your
+computer is:
 
+<!-- local: needs the duckdb Python package and the northwind.duckdb file you just created -->
 ```python
 import duckdb
 con = duckdb.connect("northwind.duckdb")
@@ -107,8 +119,8 @@ SELECT * FROM customers LIMIT 5;
 ```
 
 `*` means every column. `LIMIT 5` means stop after five rows. Always put a
-`LIMIT` on your first look at an unfamiliar table, or you will print 40,000
-rows into your terminal.
+`LIMIT` on your first look at an unfamiliar table, or you will pull back 40,000
+rows you never wanted to read.
 
 Naming the columns gives you a narrower result:
 
@@ -606,7 +618,9 @@ The discovery-call question: **which accounts have gone quiet?** Northwind's
 last data is from 2026-08-31, so "quiet" means no usage event in the 60 days
 before then, meaning nothing since 2026-07-02.
 
-Step 1. Open the database from the repo root.
+Step 1. Get to somewhere you can run SQL. In the browser, that is any of the
+boxes on this page; the tables are already loaded, so there is nothing to do.
+On your computer, open the database from the repo root.
 
 ```bash
 duckdb northwind.duckdb
@@ -697,9 +711,13 @@ You cannot yet put company names on that list, because the names are in
 
 ## Exercises
 
-Write your answers in `exercises.sql` in this folder, then check
-`solutions.md`. Try each one before you look. Getting a syntax error and fixing
-it is the learning.
+<!-- cells -->
+
+Ten questions, all against the seven Northwind tables. In the browser, write
+each answer in the empty box under it and press Run. On your computer, write
+them in `exercises.sql` in this folder and run them in DuckDB. Either way,
+check `solutions.md` afterward. Try each one before you look. Getting a syntax
+error and fixing it is the learning.
 
 1. List the company name and country of every customer in the Education
    industry, sorted alphabetically by company name.

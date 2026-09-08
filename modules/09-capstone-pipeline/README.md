@@ -146,6 +146,11 @@ Eight steps with a checkpoint after each. A checkpoint means: something works,
 and you commit it. Estimated total time is 10 to 14 hours, which fits a week
 of 90-minute sessions with room to spare.
 
+Run this whole walkthrough on your computer. The capstone is a repository a
+stranger clones and runs: it calls a live API, writes CSVs and PNG files, and
+keeps a DuckDB database file. None of that exists inside a browser tab, so
+every code block below is marked local-only on the site.
+
 Create the repository first. This is a new, separate repository from your
 learning log, because you will link to it directly.
 
@@ -182,6 +187,7 @@ committed. This takes twenty minutes and it is the step people skip.
 Write `extract.py` so that it makes exactly one request and prints the status
 code and the first record. Nothing else yet.
 
+<!-- local: calls a live API over the network -->
 ```python
 import requests
 
@@ -254,6 +260,7 @@ name says it is.
 
 ### Step 5: load into DuckDB and sanity-check
 
+<!-- local: uses the duckdb package and the database file your pipeline created -->
 ```python
 import duckdb
 
@@ -306,6 +313,7 @@ written above it. Committed.
 Write `charts.py` that runs four of your queries and saves four PNGs to
 `charts/`.
 
+<!-- local: uses duckdb and matplotlib and writes PNG files to your disk -->
 ```python
 import duckdb
 import matplotlib
@@ -419,7 +427,15 @@ feel optional and are not.
 
 ## Exercises
 
-These are checks on the capstone itself. Solutions in `solutions.md`.
+<!-- cells -->
+<!-- local-exercises: 5,6,7 -->
+
+These are checks on the capstone itself, so most of them are writing rather
+than code. Exercises 1 through 3 use `example_queries.sql` in this folder: run
+the file on your computer in DuckDB, or paste its queries one at a time into a
+SQL box on the module 03 or 04 pages of the site, which are loaded with the
+same dataset. Exercises 5, 6, and 7 are about your own pipeline and run on your
+computer only. Solutions in `solutions.md`.
 
 1. Run `example_queries.sql` in this folder against the repo dataset. Pick any
    three results and write one sentence of interpretation for each — not what

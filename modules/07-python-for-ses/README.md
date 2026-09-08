@@ -33,6 +33,21 @@ web frameworks. If a tutorial starts with "class Animal:", close it. Those
 things are real and useful for software engineers and they are not what gets
 you hired as an SE.
 
+### Where the code in this module runs
+
+Most of the Python below is small enough to **run in the browser**. On the site
+the boxes have the seven Northwind CSVs sitting next to them, so the variables,
+lists, dicts, loops, functions, and the CSV-reading examples all run there, and
+each box remembers what the box above it defined.
+
+Three kinds of code always **run on your computer**, and the site marks them
+local-only with the reason instead of a Run button: anything that calls a live
+service with `requests`, anything that writes a file you keep, and anything
+that uses the `duckdb` package. Both walkthrough scripts in this module do at
+least one of those, which is why the walkthrough is a local session. That is
+the real boundary of a browser sandbox, and knowing where it sits is itself
+part of the job.
+
 ### Running a script
 
 Save a file with a `.py` extension, open a terminal in that folder, and run:
@@ -76,8 +91,10 @@ Nimbus Retail has 25 seats at $1499.5/mo
 
 ### Lists
 
-A **list** is an ordered collection. Square brackets, zero-indexed.
+A **list** is an ordered collection. Square brackets, zero-indexed. The
+comments show what each line evaluates to; nothing here prints on its own.
 
+<!-- static -->
 ```python
 plans = ["Free", "Starter", "Pro", "Enterprise"]
 
@@ -90,8 +107,10 @@ plans.append("Custom")   # adds to the end
 ### Dictionaries
 
 A **dictionary** (dict) maps keys to values. Curly braces. This is the Python
-shape of one JSON object, and of one row of data.
+shape of one JSON object, and of one row of data. Again, the comments show the
+value of each line rather than printing it.
 
+<!-- static -->
 ```python
 customer = {
     "customer_id": 42,
@@ -137,8 +156,10 @@ New York is warm
 Note the single quotes inside the f-string's braces: the outer string already
 uses double quotes, so the inner key uses single quotes.
 
-`continue` skips to the next item. That is the standard filtering shape:
+`continue` skips to the next item. That is the standard filtering shape, shown
+on its own; `reader` comes from the file-reading section below.
 
+<!-- static -->
 ```python
 for row in reader:
     if not row["event_ts"].startswith("2026"):
@@ -153,8 +174,10 @@ spaces.
 ### Functions
 
 A **function** is a named, reusable block. `def` defines it, `return` sends a
-value back.
+value back. The last line shows the returned value in a comment instead of
+printing it.
 
+<!-- static -->
 ```python
 def events_per_customer(events, customers):
     if customers == 0:
@@ -169,7 +192,8 @@ Write a function the second time you need the same logic, not the first.
 ### Reading and writing files
 
 Always use `with open(...)`, which closes the file automatically even if the
-code inside fails.
+code inside fails. Reading is safe to run in the browser: the Northwind CSVs
+are loaded next to the code box, so this one works there as written.
 
 ```python
 import csv
@@ -181,8 +205,10 @@ with open("customers.csv", newline="", encoding="utf-8") as handle:
 ```
 
 `csv.DictReader` gives each row as a dict keyed by the header names. Writing
-back out:
+back out is a local job, because a file you cannot find afterward is not worth
+writing:
 
+<!-- local: writes a file, which only makes sense on your own disk -->
 ```python
 with open("out.csv", "w", newline="", encoding="utf-8") as handle:
     writer = csv.DictWriter(handle, fieldnames=["city", "high_f"])
@@ -197,8 +223,10 @@ these will bite you on a real customer file, usually during a demo.
 
 ### Calling an API
 
-The `requests` library. Install it once with `pip install requests`.
+The `requests` library. Install it once with `pip install requests`, and run
+this and everything else in this section on your computer.
 
+<!-- local: calls a live API over the network, which a browser code cell cannot do -->
 ```python
 import requests
 
@@ -230,8 +258,10 @@ object with that status code, and you have to check it yourself.
 ### Error handling
 
 **Exception handling** means catching a failure and deciding what to do
-instead of crashing.
+instead of crashing. This is an excerpt from inside a function, so it is here
+to read and copy, not to run on its own.
 
+<!-- static -->
 ```python
 try:
     response = requests.get(url, timeout=20)
@@ -270,8 +300,10 @@ string where a number was expected), `FileNotFoundError` (wrong path), and
 
 ## Walkthrough
 
-Two scripts ship in this folder. Run each, then read it line by line. Install
-the dependencies first:
+Two scripts ship in this folder. Run this walkthrough on your computer: both
+scripts need packages the browser does not have, and one of them calls a live
+API and writes a file. Run each, then read it line by line. Install the
+dependencies first:
 
 ```powershell
 pip install requests duckdb
@@ -280,7 +312,10 @@ pip install requests duckdb
 ### Part 1: API to CSV to SQL
 
 `weather_to_csv.py` calls Open-Meteo for four cities, reshapes the JSON into
-rows, writes `weather.csv`, and then queries that CSV with DuckDB.
+rows, writes `weather.csv`, and then queries that CSV with DuckDB. This one is
+local only, and both halves of that sentence are the reason: a browser code
+cell cannot call an outside API, and it has nowhere to put a `weather.csv` you
+could open afterward. Exercise 2 below inherits the same limit.
 
 ```powershell
 python weather_to_csv.py
@@ -326,6 +361,7 @@ records. It returns parallel arrays:
 Element 0 of every array describes the same day. `zip()` stitches them back
 into one row per day:
 
+<!-- static -->
 ```python
 for day, high, low, rain in zip(
     daily["time"],
@@ -347,6 +383,7 @@ integrations, because nothing errors — the numbers are just wrong.
 Then DuckDB reads the CSV directly off disk. There is no import step and no
 table creation:
 
+<!-- static -->
 ```python
 duckdb.sql(f"SELECT ... FROM read_csv_auto('{OUT_PATH.as_posix()}') ...").fetchall()
 ```
@@ -396,7 +433,8 @@ speed at this size. SQL wins on three other things.
 **Lines of thinking.** The Python version needs a dict for counts, a dict of
 sets for distinct customers, a filter, a division guarded against zero, and a
 sort with a key function. The SQL version is one statement that reads almost
-like the question:
+like the question, and this one you can run in the browser, because it only
+reads the dataset:
 
 ```sql
 SELECT event_type,
@@ -451,8 +489,17 @@ table, then stop writing Python and write SQL.
 
 ## Exercises
 
-Write your answers as `.py` files in your own learning-log repository.
-Solutions are in `solutions.md`.
+<!-- cells -->
+<!-- local-exercises: 2,3,6,8,9,10 -->
+
+Exercises 1, 4, 5, and 7 run in the browser: the site gives each one an empty
+box with the Northwind CSVs already loaded. Exercises 2, 3, 6, and 8 through 10
+run on your computer, because they call a live API, write a file, use the
+`duckdb` package, or depend on a path inside your clone of this repo.
+
+Either way, write your answers as `.py` files in your own learning-log
+repository, so the work is committed somewhere. Solutions are in
+`solutions.md`.
 
 1. Write a script that defines a list of dicts for three customers, each with
    `company_name`, `seats`, and `mrr`. Loop over it and print one line per
@@ -491,8 +538,10 @@ Solutions are in `solutions.md`.
    is 15.
 
 9. Take this failing snippet, predict the error before you run it, then run it
-   and fix it:
+   and fix it. It is meant to fail, and its relative path assumes a local clone
+   of this repo, so run it on your computer:
 
+   <!-- static -->
    ```python
    import csv
    with open("../../datasets/plans.csv") as f:
@@ -525,6 +574,7 @@ exactly the shape a JSON array of records parses into.
 <details>
 <summary>2. This line crashes with a KeyError. Name two different fixes and say when each is right.</summary>
 
+<!-- static -->
 ```python
 plan = customer["plan_name"]
 ```
