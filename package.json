@@ -8,7 +8,7 @@
     "predev": "node scripts/copy-datasets.mjs",
     "dev": "astro dev",
     "prebuild": "node scripts/copy-datasets.mjs",
-    "build": "astro build",
+    "build": "astro build --force",
     "preview": "astro preview",
     "test:content": "node scripts/verify-content.mjs",
     "test:sql": "node scripts/verify-sql.mjs",

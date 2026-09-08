@@ -285,7 +285,9 @@ erDiagram
 
 Step 3. Write the DDL. Run this in the browser using the boxes in the rest of
 this walkthrough, in order, from here to step 7; each step builds on the one
-before it. On your computer, open the database from the repo root with
+before it. Run this box a second time and it says the table already exists,
+which is correct: the tables are still there from the first run, so read the
+error and move on. On your computer, open the database from the repo root with
 `duckdb northwind.duckdb` and run the same statements:
 
 ```sql
