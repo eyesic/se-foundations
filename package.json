@@ -3,6 +3,9 @@
   "private": true,
   "type": "module",
   "version": "0.1.0",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "description": "Interactive site build of the se-foundations curriculum. modules/ Markdown stays canonical.",
   "scripts": {
     "predev": "node scripts/copy-datasets.mjs",
