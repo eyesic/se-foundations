@@ -26,6 +26,10 @@ window functions are the three things interviewers check.
 
 ## Concepts
 
+Same seven Northwind tables as module 03, so there is no new setup. Run this in
+the browser using the box under each query, or run it on your computer in
+`duckdb northwind.duckdb`. The SQL is identical either way.
+
 ### Joins
 
 A **join** combines rows from two tables using a condition, almost always
@@ -730,7 +734,11 @@ got it.
 
 ## Exercises
 
-Write your answers in `exercises.sql`, then check `solutions.md`.
+<!-- cells -->
+
+In the browser, write each answer in the empty box under it and press Run. On
+your computer, write them in `exercises.sql` and run them in DuckDB. Then check
+`solutions.md`.
 
 1. Top ten active subscriptions by MRR, showing company name, plan name, seats,
    and MRR.

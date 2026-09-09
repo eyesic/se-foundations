@@ -6,3 +6,13 @@ __pycache__/
 .venv/
 .env
 modules/07-python-for-ses/weather.csv
+
+# interactive site build
+node_modules/
+dist/
+.astro/
+test-results/
+playwright-report/
+site/public/datasets/
+site/public/duckdb/
+site/public/pyodide/

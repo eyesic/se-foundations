@@ -14,6 +14,8 @@ résumé bullets instead of a folder of notes nobody reads.
 ## What you will be able to do
 
 - Explain what a solutions engineer does and which parts you can already do.
+- Know which code you can run in the browser on the site and which you have to
+  run on your own computer, and why.
 - Run Python, DuckDB, and Git from a terminal on your own machine.
 - Have a GitHub account and know what a repository is for.
 - Keep a learning log that converts directly into résumé bullets and LinkedIn
@@ -35,6 +37,44 @@ can say in an interview, and a résumé bullet you can paste once the work is
 actually done. That structure exists because the gap you are closing is not
 only knowledge. It is being able to prove the knowledge to a stranger in
 thirty seconds.
+
+### Two ways to work through this
+
+There are two surfaces, and you will use both.
+
+The **site** at <https://eyesic.github.io/se-foundations/> is the same twelve
+modules with the SQL and Python examples turned into boxes you can edit and
+run. The Northwind dataset is already loaded there, so you can start module 03
+before you have installed anything, on any machine, including one you do not
+control.
+
+The **repo** is the canonical source: the `modules/` folders you are reading
+now, on GitHub or on your own disk. The site is generated from them. If the
+two ever disagree, the Markdown in `modules/` is the one that is right.
+
+Two phrases run through every module from here on, and they always mean the
+same thing:
+
+- **Run this in the browser.** Use the box under the code on the site and press
+  Run. The seven Northwind tables are already loaded.
+- **Run this on your computer.** Use the tools you install in the walkthrough
+  below, in a terminal or in VS Code. On the site these blocks are marked as
+  local-only, with the reason, and have no Run button.
+
+Three kinds of work always need your own computer, which is why the setup below
+is not optional:
+
+- **Module 02, terminal and Git.** The whole point is your machine.
+- **Anything that calls a live service.** Module 06, and the API exercises in
+  modules 07 and 09. A browser cell cannot reach an outside API.
+- **Anything that writes a file you keep.** Module 07's `weather_to_csv.py` and
+  its CSV exercises, and the whole module 09 capstone. A browser cell has
+  nowhere to put a file.
+
+One more thing about the site: whatever you type into it is stored in that one
+browser only. Clear your browser data or switch machines and it is gone. It is
+convenience while you work, not a record. The record is `progress.md` ticked
+and committed, and your learning log.
 
 ### The eight-week path
 
@@ -134,7 +174,12 @@ Thursday, scroll up. That is what you did not know four weeks ago.
 ## Walkthrough
 
 Install the tools and verify each one. You will spend one session here. Do it
-now; nothing later works without it.
+now. Modules 02, 06, 07, and 09 do not work without it, and having the tools
+locally is how the job itself works.
+
+If you are reading this on the site and want to start module 03 today, you can:
+the SQL there runs in the browser. Finish this walkthrough before the end of
+week 1 anyway.
 
 Windows commands are shown for **PowerShell**. If you prefer **Git Bash**
 (installed with Git), the same commands work except where noted. Mac and Linux

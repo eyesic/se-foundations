@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content';
+import Page from '../layouts/Page.astro';
+
+const base = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : import.meta.env.BASE_URL + '/';
+
+const entries = (await getCollection('modules')).sort((a, b) => a.id.localeCompare(b.id));
+
+const modules = entries.map((entry) => {
+  const slug = entry.id.replace(/\/readme$/i, '');
+  const body = entry.body ?? '';
+  const heading = /^#\s+(.+)$/m.exec(body);
+  // "Why an SE needs this" opens every module; its first sentence is the
+  // one-line summary.
+  const why = /^##\s+Why an SE needs this\s*\n+([\s\S]*?)(?:\n\s*\n|\n##\s)/m.exec(body);
+  const firstSentence = why ? /^[\s\S]*?[.!?](?=\s|$)/.exec(why[1].replace(/\n/g, ' ')) : null;
+  return {
+    slug,
+    title: heading ? heading[1].trim() : slug,
+    summary: firstSentence ? firstSentence[0].trim() : '',
+  };
+});
+---
+
+<Page title="se-foundations">
+  <article class="prose">
+    <h1>se-foundations</h1>
+    <p>
+      Twelve modules that take a non-programmer to solutions-engineer
+      foundations. Every page here is generated from the Markdown in
+      <code>modules/</code>, which stays the canonical source and reads the same
+      on GitHub.
+    </p>
+    <p>
+      SQL and Python examples on the module pages run in this tab, against the
+      same seven CSVs in <code>datasets/</code> that produced the outputs in the
+      solutions files. Nothing is uploaded anywhere.
+    </p>
+    <table class="modules">
+      <thead>
+        <tr>
+          <th>Module</th>
+          <th>What it covers</th>
+          <th>Solutions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          modules.map((module) => (
+            <tr>
+              <td>
+                <a href={`${base}${module.slug}/`}>{module.title}</a>
+              </td>
+              <td>{module.summary}</td>
+              <td>
+                <a href={`${base}${module.slug}/solutions/`}>solutions</a>
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </article>
+</Page>

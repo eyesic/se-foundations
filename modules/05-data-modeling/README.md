@@ -233,6 +233,7 @@ into it. Module 08 goes further.
 **DDL** (data definition language) is the SQL that creates and changes
 structure, as opposed to the queries you have been writing, which are DML.
 
+<!-- static -->
 ```sql
 CREATE TABLE tags (
   tag_id      INTEGER PRIMARY KEY,
@@ -241,10 +242,11 @@ CREATE TABLE tags (
 );
 ```
 
-Read it as four decisions: `tag_id` identifies the row, `name` must be present
-and cannot repeat, `created_at` fills itself in. Those constraints are the
-model. Anything you do not declare, the application has to remember to enforce,
-and eventually it will not.
+This one is here to read, not to run; you create these tables for real in the
+walkthrough. Read it as four decisions: `tag_id` identifies the row, `name`
+must be present and cannot repeat, `created_at` fills itself in. Those
+constraints are the model. Anything you do not declare, the application has to
+remember to enforce, and eventually it will not.
 
 ## Walkthrough
 
@@ -281,8 +283,12 @@ erDiagram
     }
 ```
 
-Step 3. Write the DDL. Open the database from the repo root with
-`duckdb northwind.duckdb` and run:
+Step 3. Write the DDL. Run this in the browser using the boxes in the rest of
+this walkthrough, in order, from here to step 7; each step builds on the one
+before it. Run this box a second time and it says the table already exists,
+which is correct: the tables are still there from the first run, so read the
+error and move on. On your computer, open the database from the repo root with
+`duckdb northwind.duckdb` and run the same statements:
 
 ```sql
 CREATE TABLE tags (

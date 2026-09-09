@@ -507,9 +507,10 @@ quote both.
 
 ## Exercises
 
-Work in curl or Postman, whichever you prefer. Write your answers in a file
-named `06-answers.md` in your own learning-log repository. Solutions are in
-`solutions.md`.
+Run these on your computer, in curl or Postman, whichever you prefer: every one
+of them calls a live API over the network, which is exactly what a browser code
+cell cannot do. Write your answers in a file named `06-answers.md` in your own
+learning-log repository. Solutions are in `solutions.md`.
 
 1. Label every part of this URL out loud, then write the labels down:
    `https://api.open-meteo.com/v1/forecast?latitude=35.9&longitude=-79.0&daily=temperature_2m_max&timezone=America/New_York`

@@ -11,6 +11,17 @@ that is roughly your situation, it will work for you too.
 Everything here is free. No paid tools, no accounts beyond GitHub, no course to
 buy.
 
+## Two ways to work through this
+
+Read it here on GitHub, or read it on the site at
+**<https://eyesic.github.io/se-foundations/>**, where the SQL and Python
+examples are boxes you can edit and run against the dataset in your browser
+with nothing installed. The site is generated from the `modules/` folders in
+this repo; that Markdown is the canonical source, and it is complete on its own.
+Anything the browser cannot do — the terminal and Git module, live API calls,
+and the scripts that write files — is marked local-only on the site and is
+covered by the tool setup in module 00.
+
 ## The modules
 
 | module | what it covers | what you produce |
